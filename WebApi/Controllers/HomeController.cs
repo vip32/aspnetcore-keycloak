@@ -18,6 +18,7 @@ namespace KeyCloak.Controllers
                 "http://localhost:8080/auth/realms/master/.well-known/openid-configuration",
                 // "http://localhost:8080/auth/realms/master/protocol/openid-connect/auth?response_type=token&client_id=naos-sample&redirect_uri=http://localhost:5000/callback",
                 $"{HttpContext.Request.Scheme}://{HttpContext.Request.Host}/api/values",
+                $"{HttpContext.Request.Scheme}://{HttpContext.Request.Host}/login.html",
                 $"{HttpContext.Request.Scheme}://{HttpContext.Request.Host}/login",
                 $"{HttpContext.Request.Scheme}://{HttpContext.Request.Host}/logout",
                 HttpContext.User?.Identity?.Name,

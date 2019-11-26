@@ -1,0 +1,39 @@
+﻿<!-- Include Bootstrap from a CDN (Content Delivery Network) -->
+<!-- Latest compiled and minified CSS -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+
+<!DOCTYPE html>
+<html lang="en">
+<HEAD>
+    <script src="openidconnect.js"></script>
+    <style>
+
+    </style>
+    <script>
+        OIDC.restoreInfo();
+        var id_token = OIDC.getValidIdToken();
+        var access_token = OIDC.getAccessToken();
+        var claims = JSON.parse(OIDC.getIdTokenParts(id_token)[1]);
+
+        var userInfoClaims = JSON.parse(OIDC.getUserInfo(access_token));
+        OIDC.debug(true, id_token);
+
+        function print_id_token() {
+            document.getElementById("retrievedInfo").innerHTML = '<b>id_token: </b>' + id_token +
+                '\n<br/><b>access_token: </b>' + access_token +
+                '\n<br/><b>claims (id_token): </b>' + JSONObjToHTMLTable(claims) +
+                '\n<br/><b>userinfo (access_token): </b>' + JSONObjToHTMLTable(userInfoClaims);
+        }
+    </script>
+</HEAD>
+
+<BODY onload="print_id_token();">
+    <div class="container">
+        <h1>Implicit Flow - Callback</h1>
+
+        <div id="retrievedInfo">
+            id_token claims and userinfo not found.
+        </div>
+    </div>
+</BODY>
+</html>oidc
