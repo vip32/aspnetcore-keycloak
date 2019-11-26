@@ -3,12 +3,12 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.29512.175
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "KeyCloak", "KeyCloak\KeyCloak.csproj", "{B8FCCB55-8ABC-4B3F-B1D2-83451A9F0F57}"
-EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "global", "global", "{0A0A87E1-D428-4A9F-9FF7-CDC59C2658E3}"
 	ProjectSection(SolutionItems) = preProject
 		README.md = README.md
 	EndProjectSection
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WebApi", "WebApi\WebApi.csproj", "{50A74F5F-148E-4347-88DB-5D7D385D0D72}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -16,10 +16,10 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{B8FCCB55-8ABC-4B3F-B1D2-83451A9F0F57}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{B8FCCB55-8ABC-4B3F-B1D2-83451A9F0F57}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{B8FCCB55-8ABC-4B3F-B1D2-83451A9F0F57}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{B8FCCB55-8ABC-4B3F-B1D2-83451A9F0F57}.Release|Any CPU.Build.0 = Release|Any CPU
+		{50A74F5F-148E-4347-88DB-5D7D385D0D72}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{50A74F5F-148E-4347-88DB-5D7D385D0D72}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{50A74F5F-148E-4347-88DB-5D7D385D0D72}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{50A74F5F-148E-4347-88DB-5D7D385D0D72}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

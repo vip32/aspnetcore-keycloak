@@ -8,7 +8,7 @@ using Microsoft.AspNetCore.Mvc;
 namespace KeyCloak.Controllers
 {
     [Route("/")]
-    public class HomeController : Controller
+    public class HomeController : ControllerBase
     {
         [HttpGet]
         public async Task<IEnumerable<string>> Get()
@@ -49,13 +49,5 @@ namespace KeyCloak.Controllers
                 CookieAuthenticationDefaults.AuthenticationScheme
             });
         }
-
-        [Route("callback")]
-        [HttpGet]
-        public IActionResult Callback()
-        {
-            return new ObjectResult(HttpContext.User.Identity);
-        }
     }
-
 }
