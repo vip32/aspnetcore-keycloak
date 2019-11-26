@@ -7,7 +7,39 @@
 <HEAD>
     <script src="openidconnect.js"></script>
     <style>
+        body {
+            background-color: black;
+            color: white;
+            font-family: monospace;
+            margin: 1em 0px;
+            font-size: 12px;
+        }
+        .table-striped>tbody>tr:nth-of-type(odd) {
+            background-color: black;
+        }
+        a {
+            text-decoration: none;
+            color: gray;
+        }
 
+            a:link {
+            }
+
+            a:visited {
+            }
+
+            a:hover {
+                color: cyan;
+            }
+
+        hr {
+            display: block;
+            height: 1px;
+            border: 0;
+            border-top: 1px solid #222222;
+            margin: 1em 0;
+            padding: 0;
+        }
     </style>
     <script>
         OIDC.restoreInfo();
@@ -36,4 +68,4 @@
         </div>
     </div>
 </BODY>
-</html>oidc
+</html>
