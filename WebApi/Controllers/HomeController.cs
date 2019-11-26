@@ -17,9 +17,9 @@ namespace KeyCloak.Controllers
             {
                 "http://localhost:8080/auth/realms/master/.well-known/openid-configuration",
                 // "http://localhost:8080/auth/realms/master/protocol/openid-connect/auth?response_type=token&client_id=naos-sample&redirect_uri=http://localhost:5000/callback",
-                "http://localhost:5000/api/values",
-                "http://localhost:5000/login",
-                "http://localhost:5000/logout",
+                $"{HttpContext.Request.Scheme}://{HttpContext.Request.Host}/api/values",
+                $"{HttpContext.Request.Scheme}://{HttpContext.Request.Host}/login",
+                $"{HttpContext.Request.Scheme}://{HttpContext.Request.Host}/logout",
                 HttpContext.User?.Identity?.Name,
                 HttpContext.User?.Identity?.IsAuthenticated == true ? "access_token: " + await this.HttpContext.GetTokenAsync("access_token") : null, // https://www.jerriepelser.com/blog/accessing-tokens-aspnet-core-2/
                 HttpContext.User?.Identity?.IsAuthenticated == true ? "id_token: " + await this.HttpContext.GetTokenAsync("id_token") : null,
