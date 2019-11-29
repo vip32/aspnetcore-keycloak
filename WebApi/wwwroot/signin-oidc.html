@@ -14,9 +14,11 @@
             margin: 1em 0px;
             font-size: 12px;
         }
-        .table-striped>tbody>tr:nth-of-type(odd) {
+
+        .table-striped > tbody > tr:nth-of-type(odd) {
             background-color: black;
         }
+
         a {
             text-decoration: none;
             color: gray;
@@ -43,11 +45,11 @@
     </style>
     <script>
         var clientInfo = {
-            client_id: 'naos-sample',
-            redirect_uri: 'https://localhost:5001/login-callback.html'
+            client_id: 'aspnetcore-keycloak',
+            redirect_uri: 'https://localhost:5001/signin-oidc-callback.html'
         };
 
-        var providerInfo = OIDC.discover('http://localhost:8080/auth/realms/master');
+        var providerInfo = OIDC.discover('https://global-keycloak.azurewebsites.net/auth/realms/master');
         OIDC.setClientInfo(clientInfo);
         OIDC.setProviderInfo(providerInfo);
         OIDC.storeInfo(providerInfo, clientInfo);
@@ -64,7 +66,7 @@
 
 <BODY>
     <div class="container" style="margin-bottom: 50px;">
-        <h1>Implicit Flow - Login Page</h1>
+        <h1>Client Side > Implicit Flow - Signin Page</h1>
         <br>
         <b>clientInfo</b>
         <div id="clientInfo">

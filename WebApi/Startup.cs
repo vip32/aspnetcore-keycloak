@@ -33,8 +33,6 @@ namespace KeyCloak3
             .AddOpenIdConnect(options =>
             {
                 options.Authority = Configuration["Oidc:Authority"];
-                //options.MetadataAddress
-                //options.SignedOutRedirectUri = "/";
                 options.ClientId = Configuration["Oidc:ClientId"];
                 options.ClientSecret = Configuration["Oidc:ClientSecret"];
                 options.SaveTokens = true;

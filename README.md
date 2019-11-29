@@ -1,6 +1,14 @@
 keycloak client setup:
 ![](keycloak_client_setup.png)
 
+- Client Protocol = openid-connect
+- Access Type = confidential
+  - client secret will appear under 'Credentials' after saving
+- Valid Redirect URIs = 
+  - for ASP.Net Core Authentication Middleware https://localhost:5001/signin-oidc + https://localhost:5001/signout-callback-oidc
+  - for custom html login https://localhost:5001/signin-oidc-callback.html
+- Web Origins = * (otherwise /userinfo request will have empty response)
+
 ### webapi appsettings:
 ```
  "Oidc": {

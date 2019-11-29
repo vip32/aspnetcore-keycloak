@@ -4,23 +4,30 @@ using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Authentication.OpenIdConnect;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Configuration;
 
 namespace KeyCloak.Controllers
 {
     [Route("/")]
     public class HomeController : ControllerBase
     {
+        private readonly IConfiguration configuration;
+
+        public HomeController(IConfiguration configuration)
+        {
+            this.configuration = configuration;
+        }
+
         [HttpGet]
         public async Task<IEnumerable<string>> Get()
         {
             return new string[]
             {
-                "http://localhost:8080/auth/realms/master/.well-known/openid-configuration",
-                // "http://localhost:8080/auth/realms/master/protocol/openid-connect/auth?response_type=token&client_id=naos-sample&redirect_uri=http://localhost:5000/callback",
+                $"{this.configuration["Oidc:Authority"]}/.well-known/openid-configuration",
                 $"{HttpContext.Request.Scheme}://{HttpContext.Request.Host}/api/values",
-                $"{HttpContext.Request.Scheme}://{HttpContext.Request.Host}/login.html",
-                $"{HttpContext.Request.Scheme}://{HttpContext.Request.Host}/login",
-                $"{HttpContext.Request.Scheme}://{HttpContext.Request.Host}/logout",
+                $"{HttpContext.Request.Scheme}://{HttpContext.Request.Host}/signin-oidc.html",
+                $"{HttpContext.Request.Scheme}://{HttpContext.Request.Host}/signin-oidc",
+                $"{HttpContext.Request.Scheme}://{HttpContext.Request.Host}/signout-oidc",
                 HttpContext.User?.Identity?.Name,
                 HttpContext.User?.Identity?.IsAuthenticated == true ? "access_token: " + await this.HttpContext.GetTokenAsync("access_token") : null, // https://www.jerriepelser.com/blog/accessing-tokens-aspnet-core-2/
                 HttpContext.User?.Identity?.IsAuthenticated == true ? "id_token: " + await this.HttpContext.GetTokenAsync("id_token") : null,
@@ -28,9 +35,9 @@ namespace KeyCloak.Controllers
         };
         }
 
-        [Route("login")]
+        [Route("signin-oidc")]
         [HttpGet]
-        public IActionResult Login()
+        public IActionResult Signin()
         {
             if (!HttpContext.User.Identity.IsAuthenticated)
             {
@@ -40,15 +47,19 @@ namespace KeyCloak.Controllers
             return new ObjectResult(HttpContext.User.Identity);
         }
 
-        [Route("logout")]
+        [Route("signout-oidc")]
         [HttpGet]
-        public IActionResult Logout()
+        public IActionResult Signout()
         {
-            return new SignOutResult(new[]
+            var result = new SignOutResult(new[]
             {
                 OpenIdConnectDefaults.AuthenticationScheme,
-                CookieAuthenticationDefaults.AuthenticationScheme
+                CookieAuthenticationDefaults.AuthenticationScheme,
             });
+
+            result.Properties = new AuthenticationProperties();
+            result.Properties.RedirectUri = $"{HttpContext.Request.Scheme}://{HttpContext.Request.Host}/";
+            return result;
         }
     }
 }
