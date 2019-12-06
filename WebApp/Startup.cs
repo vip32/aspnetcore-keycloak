@@ -43,7 +43,6 @@ namespace web
                 options.ClientId = Configuration["Oidc:ClientId"];
                 options.ClientSecret = Configuration["Oidc:ClientSecret"];
                 options.SaveTokens = true;
-                options.GetClaimsFromUserInfoEndpoint = true;
                 options.ResponseType = OpenIdConnectResponseType.Code; //Configuration["Oidc:ResponseType"];
                 options.RequireHttpsMetadata = false; // dev only
                 options.GetClaimsFromUserInfoEndpoint = true;
