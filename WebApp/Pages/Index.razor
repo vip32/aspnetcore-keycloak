@@ -1,0 +1,37 @@
+﻿@page "/"
+
+<h3>aspnetcore-keycloak (blazor)</h3>
+
+Hello @Name
+
+<button @onclick="Toggle">Toggle</button>
+
+<AuthorizeView>
+    <Authorized>
+        <a href="signout">signout</a>
+    </Authorized>
+    <NotAuthorized>
+        <a href="signin?redirectUri=/">signin</a>
+    </NotAuthorized>
+</AuthorizeView>
+
+<p>
+    @*<a href="/signin">signin</a> | <a href="/signout">signout</a><br />*@
+    <a href="/profile">profile (secured)</a><br />
+</p>
+
+@code {
+    public string Name { get; set; } = "foo";
+
+    protected async Task Toggle()
+    {
+        if (Name == "foo")
+        {
+            Name = "bar";
+        }
+        else
+        {
+            Name = "foo";
+        }
+    }
+}

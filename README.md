@@ -19,7 +19,7 @@ keycloak client setup:
 ```
 
 ### todos:
-- +dockercompose (keycloak/sql/webapi)
+- blazor app https://auth0.com/blog/what-is-blazor-tutorial-on-building-webapp-with-authentication/#Securing-the-Application-with-Auth0
 - [DONE] simple html page for login https://github.com/GluuFederation/openid-implicit-client
 - autosetup keycloak client? with api request? 
   - https://www.keycloak.org/docs-api/5.0/rest-api/index.html#_clients_resource
