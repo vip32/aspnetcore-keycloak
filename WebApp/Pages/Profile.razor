@@ -1,6 +1,7 @@
 ﻿@page "/profile"
 @attribute [Authorize]
 @inject AuthenticationStateProvider AuthenticationStateProvider
+@inject IHttpContextAccessor ContextAccessor
 
 <h3>aspnetcore-keycloak (blazor)</h3>
 
@@ -8,6 +9,10 @@ Profile...
 
 <AuthorizeView Roles="admin, superuser">
     <p>hello admin or superuser.</p>
+</AuthorizeView>
+
+<AuthorizeView>
+    <h1>Hi, @ContextAccessor.HttpContext.User.Identity.Name!</h1>
 </AuthorizeView>
 
 <button @onclick="@Log">Write user info to console</button>
@@ -25,6 +30,7 @@ Profile...
 
         if (user.Identity.IsAuthenticated)
         {
+            var user1 = ContextAccessor.HttpContext.User.Identity.Name;
             Console.WriteLine($"user '{user.Identity.Name}' is authenticated.");
         }
         else

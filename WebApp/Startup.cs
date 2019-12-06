@@ -1,3 +1,4 @@
+using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Authentication.OpenIdConnect;
 using Microsoft.AspNetCore.Builder;
@@ -7,6 +8,9 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.IdentityModel.Protocols.OpenIdConnect;
 using Microsoft.IdentityModel.Tokens;
+using System;
+using System.Linq;
+using System.Threading.Tasks;
 
 namespace web
 {
@@ -48,7 +52,21 @@ namespace web
                 options.Scope.Add("claims");
                 options.Scope.Add("profile");
                 options.SaveTokens = true;
+                //options.Events.OnTicketReceived= ctx =>
+                //{
+                //    // ctx contains id/access token
+                //    var tokens = ctx.Properties.GetTokens().ToList();
 
+                //    tokens.Add(new AuthenticationToken()
+                //    {
+                //        Name = "TicketCreated",
+                //        Value = DateTime.UtcNow.ToString()
+                //    });
+
+                //    ctx.Properties.StoreTokens(tokens);
+
+                //    return Task.CompletedTask;
+                //};
                 options.TokenValidationParameters = new TokenValidationParameters
                 {
                     NameClaimType = "name",
@@ -56,8 +74,6 @@ namespace web
                     ValidateIssuer = true
                 };
             });
-
-            // access token: http://localhost:8080/auth/realms/master/protocol/openid-connect/auth?response_type=token&client_id=naos-sample&redirect_uri=https://localhost:5001/signin-oidc
 
             services.AddAuthorization();
             services.AddHttpContextAccessor();
