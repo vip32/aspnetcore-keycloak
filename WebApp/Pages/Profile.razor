@@ -13,7 +13,17 @@ Profile...
 </AuthorizeView>
 
 <AuthorizeView>
-    <h1>Hi, @ContextAccessor.HttpContext.User.Identity.Name!</h1>
+    <ul>
+        <li>
+            user: @ContextAccessor.HttpContext.User.Identity.Name
+        </li>
+        <li>
+            access_token: @ContextAccessor.HttpContext.GetTokenAsync("access_token").Result
+        </li>
+        <li>
+            id_token: @ContextAccessor.HttpContext.GetTokenAsync("id_token").Result
+        </li>
+    </ul>
 </AuthorizeView>
 
 <button @onclick="@Log">Write user info to console</button>
@@ -23,7 +33,6 @@ Profile...
 </p>
 
 @code {
-
     private async Task Log()
     {
         var authState = await AuthenticationStateProvider.GetAuthenticationStateAsync();
