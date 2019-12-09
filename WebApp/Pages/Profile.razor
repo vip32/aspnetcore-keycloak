@@ -18,11 +18,20 @@ Profile...
             user: @ContextAccessor.HttpContext.User.Identity.Name
         </li>
         <li>
+            user: @ContextAccessor.HttpContext.User.Identity.IsAuthenticated
+        </li>
+        <li>
             access_token: @ContextAccessor.HttpContext.GetTokenAsync("access_token").Result
         </li>
         <li>
             id_token: @ContextAccessor.HttpContext.GetTokenAsync("id_token").Result
         </li>
+        @foreach (var claim in ContextAccessor.HttpContext.User.Claims)
+        {
+            <li>
+                @claim.Type : @claim.Value
+            </li>
+        }
     </ul>
 </AuthorizeView>
 
