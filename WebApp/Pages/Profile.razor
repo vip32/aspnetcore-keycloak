@@ -26,6 +26,9 @@ Profile...
         <li>
             id_token: @ContextAccessor.HttpContext.GetTokenAsync("id_token").Result
         </li>
+        <li>
+            ====================== CLAIMS =============================================
+        </li>
         @foreach (var claim in ContextAccessor.HttpContext.User.Claims)
         {
             <li>
