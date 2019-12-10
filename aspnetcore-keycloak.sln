@@ -12,7 +12,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WebApi", "WebApi\WebApi.csp
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WebApp (blazor-serverside)", "WebApp (blazor-serverside)\WebApp (blazor-serverside).csproj", "{AEC35650-8F70-4601-9254-579E3EF1C8C5}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebApp (html-js)", "WebApp (html-js)\WebApp (html-js).csproj", "{06CDB21F-B3EE-4172-8DDD-7FE35538DB13}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WebApp (html-js)", "WebApp (html-js)\WebApp (html-js).csproj", "{06CDB21F-B3EE-4172-8DDD-7FE35538DB13}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebApp (angular)", "WebApp (angular)\WebApp (angular).csproj", "{A63AE592-7C8E-452F-BEF6-19CC7CBC9443}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -32,6 +34,10 @@ Global
 		{06CDB21F-B3EE-4172-8DDD-7FE35538DB13}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{06CDB21F-B3EE-4172-8DDD-7FE35538DB13}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{06CDB21F-B3EE-4172-8DDD-7FE35538DB13}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A63AE592-7C8E-452F-BEF6-19CC7CBC9443}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A63AE592-7C8E-452F-BEF6-19CC7CBC9443}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A63AE592-7C8E-452F-BEF6-19CC7CBC9443}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A63AE592-7C8E-452F-BEF6-19CC7CBC9443}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
