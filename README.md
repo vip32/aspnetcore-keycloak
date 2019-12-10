@@ -22,6 +22,7 @@ keycloak client setup:
 - blazor app https://auth0.com/blog/what-is-blazor-tutorial-on-building-webapp-with-authentication/#Securing-the-Application-with-Auth0
 - [DONE] simple html page for login https://github.com/GluuFederation/openid-implicit-client
 - autosetup keycloak client? with api request? 
+  - https://www.7p-group.com/blog/integrationstests-mit-testcontainers-spring-security-und-keycloak/
   - https://www.keycloak.org/docs-api/5.0/rest-api/index.html#_clients_resource
   - https://stackoverflow.com/questions/53283281/how-to-activate-the-rest-api-of-keycloak
  
