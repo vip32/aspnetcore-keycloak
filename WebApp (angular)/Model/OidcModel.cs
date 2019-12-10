@@ -2,10 +2,8 @@
 
 namespace WebApp__angular_
 {
-    public class OIDCConfig
+    public class OidcConfig
     {
-        public OIDCConfig() { _additionalLoginParameters = new Dictionary<string, string>(); }
-
         public string stsServer { get; set; }
         public string redirect_url { get; set; }
         public string client_id { get; set; }
@@ -23,9 +21,7 @@ namespace WebApp__angular_
         public bool log_console_warning_active { get; set; }
         public bool log_console_debug_active { get; set; }
         public int max_id_token_iat_offset_allowed_in_seconds { get; set; }
-
-        private Dictionary<string, string> _additionalLoginParameters;
-        public Dictionary<string, string> additional_login_parameters { get { return _additionalLoginParameters; } }
+        public Dictionary<string, string> additional_login_parameters { get; } = new Dictionary<string, string>();
     }
 
     public class OidcWellKnown
