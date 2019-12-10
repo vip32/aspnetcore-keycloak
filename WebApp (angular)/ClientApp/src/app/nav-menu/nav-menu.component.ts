@@ -26,7 +26,7 @@ export class NavMenuComponent {
     this.isAuthorizedSubscription.unsubscribe();
   }
 
-  login() {
+  signin() {
     this.oidcSecurityService.authorize();
   }
 
@@ -34,7 +34,7 @@ export class NavMenuComponent {
     this.oidcSecurityService.authorize();
   }
 
-  logout() {
+  signout() {
     this.oidcSecurityService.logoff();
   }
   collapse() {

@@ -2,11 +2,11 @@ import { Component, OnInit } from '@angular/core';
 import { OidcSecurityService } from 'angular-auth-oidc-client';
 
 @Component({
-  selector: 'app-protected',
-  templateUrl: './protected.component.html',
-  styleUrls: ['./protected.component.css']
+  selector: 'app-secure',
+  templateUrl: './secure.component.html',
+  styleUrls: ['./secure.component.css']
 })
-export class ProtectedComponent implements OnInit {
+export class SecureComponent implements OnInit {
 
   constructor(public oidcSecurityService: OidcSecurityService) { }
 

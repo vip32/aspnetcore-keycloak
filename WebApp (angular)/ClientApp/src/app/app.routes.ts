@@ -4,7 +4,7 @@ import { ForbiddenComponent } from './forbidden/forbidden.component';
 import { HomeComponent } from './home/home.component';
 import { UnauthorizedComponent } from './unauthorized/unauthorized.component';
 import { AutoLoginComponent } from './auto-login/auto-login.component';
-import { ProtectedComponent } from './protected/protected.component';
+import { SecureComponent } from './secure/secure.component';
 import { AuthorizationGuard } from './authorization.guard';
 
 const appRoutes: Routes = [
@@ -13,7 +13,7 @@ const appRoutes: Routes = [
   { path: 'autologin', component: AutoLoginComponent },
   { path: 'forbidden', component: ForbiddenComponent },
   { path: 'unauthorized', component: UnauthorizedComponent },
-  { path: 'protected', component: ProtectedComponent, canActivate: [AuthorizationGuard] }
+  { path: 'secure', component: SecureComponent, canActivate: [AuthorizationGuard] }
 ];
 
 export const routing = RouterModule.forRoot(appRoutes);

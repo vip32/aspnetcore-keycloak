@@ -20,7 +20,7 @@ import { AutoLoginComponent } from './auto-login/auto-login.component';
 import { routing } from './app.routes';
 import { ForbiddenComponent } from './forbidden/forbidden.component';
 import { UnauthorizedComponent } from './unauthorized/unauthorized.component';
-import { ProtectedComponent } from './protected/protected.component';
+import { SecureComponent } from './secure/secure.component';
 import { AuthorizationGuard } from './authorization.guard';
 import { environment } from '../environments/environment';
 
@@ -42,7 +42,7 @@ export function loadConfig(oidcConfigService: OidcConfigService) {
     AutoLoginComponent,
     ForbiddenComponent,
     UnauthorizedComponent,
-    ProtectedComponent
+    SecureComponent
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
