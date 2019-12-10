@@ -25,7 +25,6 @@ namespace KeyCloak.Controllers
             {
                 $"{this.configuration["Oidc:Authority"]}/.well-known/openid-configuration",
                 $"{HttpContext.Request.Scheme}://{HttpContext.Request.Host}/api/values",
-                $"{HttpContext.Request.Scheme}://{HttpContext.Request.Host}/signin-oidc.html",
                 $"{HttpContext.Request.Scheme}://{HttpContext.Request.Host}/signin-oidc",
                 $"{HttpContext.Request.Scheme}://{HttpContext.Request.Host}/signout-oidc",
                 HttpContext.User?.Identity?.Name,

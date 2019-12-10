@@ -6,7 +6,11 @@
 
 <h3>aspnetcore-keycloak (blazor)</h3>
 
-Profile...
+<p>
+    <a href="/">home</a><br />
+</p>
+
+Profile:
 
 <AuthorizeView Roles="admin, superuser">
     <p>hello admin or superuser.</p>
@@ -40,9 +44,6 @@ Profile...
 
 <button @onclick="@Log">Write user info to console</button>
 
-<p>
-    <a href="/">home</a><br />
-</p>
 
 @code {
     private async Task Log()
