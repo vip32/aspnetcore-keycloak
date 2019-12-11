@@ -2,18 +2,24 @@
 @attribute [Authorize]
 @inject AuthenticationStateProvider AuthenticationStateProvider
 @inject IHttpContextAccessor ContextAccessor
+@inject IConfiguration Configuration
 @*@inject ClaimsPrincipal CurrentUser*@
 
 <h3>aspnetcore-keycloak (blazor)</h3>
 
-<p>
-    <a href="/">home</a><br />
-</p>
-
 Profile:
 
-<AuthorizeView Roles="admin, superuser">
-    <p>hello admin or superuser.</p>
+<p>
+    <a href="/">home</a><br />
+    <a href="@OidcConfigurationUrl">oidc-configuration</a>
+</p>
+
+<AuthorizeView Roles="admin">
+    <p>role:you are part of 'admin'</p>
+</AuthorizeView>
+
+<AuthorizeView Roles="role1">
+    <p>role:you are part of 'role1'</p>
 </AuthorizeView>
 
 <AuthorizeView>
@@ -22,13 +28,16 @@ Profile:
             user: @ContextAccessor.HttpContext.User.Identity.Name
         </li>
         <li>
-            user: @ContextAccessor.HttpContext.User.Identity.IsAuthenticated
+            isAuthenticated: @ContextAccessor.HttpContext.User.Identity.IsAuthenticated
         </li>
         <li>
             access_token: @ContextAccessor.HttpContext.GetTokenAsync("access_token").Result
         </li>
         <li>
             id_token: @ContextAccessor.HttpContext.GetTokenAsync("id_token").Result
+        </li>
+        <li>
+            refresh_token: @ContextAccessor.HttpContext.GetTokenAsync("refresh_token").Result
         </li>
         <li>
             ====================== CLAIMS =============================================
@@ -44,8 +53,9 @@ Profile:
 
 <button @onclick="@Log">Write user info to console</button>
 
-
 @code {
+    public string OidcConfigurationUrl => Configuration["Oidc:Authority"] + "/.well-known/openid-configuration";
+
     private async Task Log()
     {
         var authState = await AuthenticationStateProvider.GetAuthenticationStateAsync();

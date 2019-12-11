@@ -1,4 +1,3 @@
-using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Authentication.OpenIdConnect;
 using Microsoft.AspNetCore.Builder;
@@ -46,10 +45,10 @@ namespace web
                 options.ResponseType = OpenIdConnectResponseType.Code; //Configuration["Oidc:ResponseType"];
                 options.RequireHttpsMetadata = false; // dev only
                 options.GetClaimsFromUserInfoEndpoint = true;
-                options.Scope.Add("email");
                 options.Scope.Add("openid");
-                options.Scope.Add("claims");
                 options.Scope.Add("profile");
+                options.Scope.Add("email");
+                options.Scope.Add("claims");
                 options.SaveTokens = true;
                 //options.Events.OnTicketReceived= ctx =>
                 //{

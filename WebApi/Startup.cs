@@ -39,10 +39,10 @@ namespace KeyCloak3
                 options.ResponseType = OpenIdConnectResponseType.Code; //Configuration["Oidc:ResponseType"];
                 options.RequireHttpsMetadata = false; // dev only
                 options.GetClaimsFromUserInfoEndpoint = true;
-                options.Scope.Add("email");
                 options.Scope.Add("openid");
-                options.Scope.Add("claims");
                 options.Scope.Add("profile");
+                options.Scope.Add("email");
+                options.Scope.Add("claims");
                 options.SaveTokens = true;
                 //options.Events = new OpenIdConnectEvents
                 //{

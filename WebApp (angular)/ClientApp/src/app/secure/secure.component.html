@@ -8,5 +8,22 @@
 <p>
   access_token: {{ oidcSecurityService.getToken() }}
 </p>
+<p>
+  refresh_token: {{ oidcSecurityService.getRefreshToken() }}
+</p>
+
+<a href="https://localhost:5001/api/config/profile">profile</a>
+
+<ul>
+  <li>
+    <a href="https://localhost:5001/api/config/configuration">configuration</a>
+  </li>
+  <li>
+    <a href="https://localhost:5001/api/config/.well-known/openid-configuration">openid-configuration</a>
+  </li>
+  <li>
+    <a href="https://localhost:5001/api/config/discovery/keys">keys</a>
+  </li>
+</ul>
 
 TODO: call secure api

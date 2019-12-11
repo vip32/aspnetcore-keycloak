@@ -7,6 +7,7 @@ using System.Net.Http.Headers;
 using Microsoft.AspNetCore.Hosting;
 using Newtonsoft.Json;
 using Microsoft.Extensions.Hosting;
+using System.Linq;
 
 namespace WebApp__angular_.Controllers
 {
@@ -41,6 +42,12 @@ namespace WebApp__angular_.Controllers
             return await this.GetJwtKs().ConfigureAwait(false);
         }
 
+        [HttpGet("profile")]
+        public async Task<string> Profile()
+        {
+            return HttpContext.User?.Claims?.Select(h => $"CLAIM {h.Type}: {h.Value}").Aggregate((i, j) => i + " | " + j);
+        }
+
         [HttpGet("configuration")]
         public async Task<OidcConfig> ConfigurationAsync()
         {
@@ -58,7 +65,7 @@ namespace WebApp__angular_.Controllers
             }
             else
             {
-                config.scope = "openid profile email"; // https://graph.microsoft.com/User.Read
+                config.scope = "openid profile email claims"; // https://graph.microsoft.com/User.Read
             }
             config.post_logout_redirect_uri = $"{protocol}{this.Request.Host.ToUriComponent()}/";
             config.post_login_route = "/home";

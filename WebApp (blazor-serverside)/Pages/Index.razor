@@ -7,12 +7,12 @@ Hello @Name
 <button @onclick="Toggle">Toggle</button>
 
 <AuthorizeView>
-    <Authorized>
-        <a href="signout">signout</a>
-    </Authorized>
     <NotAuthorized>
         <a href="signin?redirectUri=/">signin</a>
     </NotAuthorized>
+    <Authorized>
+        <a href="signout">signout</a>
+    </Authorized>
 </AuthorizeView>
 
 <p>
