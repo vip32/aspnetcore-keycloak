@@ -39,9 +39,10 @@ namespace web
                 options.ClientId = Configuration["Oidc:ClientId"];
                 options.ClientSecret = Configuration["Oidc:ClientSecret"];
                 options.SaveTokens = true;
-                options.ResponseType = OpenIdConnectResponseType.Code; //Configuration["Oidc:ResponseType"];
+                options.ResponseType = "code"; //  id_token
+                options.Resource = "aspnetcore-keycloak"; // needed for proper jwt access_token
                 options.RequireHttpsMetadata = false; // dev only
-                options.GetClaimsFromUserInfoEndpoint = true;
+                //options.GetClaimsFromUserInfoEndpoint = true; // does not work together with options.resource
                 options.Scope.Add("openid");
                 options.Scope.Add("profile");
                 options.Scope.Add("email");
