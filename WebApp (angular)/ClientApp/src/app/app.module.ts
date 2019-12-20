@@ -82,7 +82,8 @@ export class AppModule {
         post_logout_redirect_uri: configResult.customConfig.post_logout_redirect_uri,
         start_checksession: configResult.customConfig.start_checksession,
         silent_renew: configResult.customConfig.silent_renew,
-        silent_renew_url: 'https://localhost:44311/silent-renew.html',
+        silent_renew_url: 'https://localhost:5001/silent-renew.html',
+        use_refresh_token: true, // https://github.com/damienbod/angular-auth-oidc-client/issues/532
         post_login_route: '/home',
         forbidden_route: configResult.customConfig.forbidden_route,
         unauthorized_route: configResult.customConfig.unauthorized_route,
@@ -96,7 +97,6 @@ export class AppModule {
       };
 
       this.oidcSecurityService.setupModule(config, configResult.authWellknownEndpoints);
-
       this.oidcSecurityService.setCustomRequestParameters(configResult.customConfig.additional_login_parameters);
       this.oidcSecurityService.setCustomRequestParameters({ response_mode: 'fragment' } );
     });

@@ -29,6 +29,7 @@ namespace WebApp__angular_.Controllers
         [HttpGet(".well-known/openid-configuration")]
         public async Task<OidcWellKnown> WellKnownAsync()
         {
+            Console.WriteLine("GET .well-known/openid-configuration");
             var protocol = this.Request.IsHttps ? "https://" : "http://";
             var jwks_uri = $"{protocol}{this.Request.Host.ToUriComponent()}/api/config/discovery/keys";
             var wellKnown = await this.GetWellKnownAsync().ConfigureAwait(false);
@@ -51,6 +52,7 @@ namespace WebApp__angular_.Controllers
         [HttpGet("configuration")]
         public async Task<OidcConfig> ConfigurationAsync()
         {
+            Console.WriteLine("GET configuration");
             var config = new OidcConfig();
             var wellKnown = await this.GetWellKnownAsync().ConfigureAwait(false);
 
@@ -65,7 +67,7 @@ namespace WebApp__angular_.Controllers
             }
             else
             {
-                config.scope = "openid profile email claims"; // https://graph.microsoft.com/User.Read
+                config.scope = "openid profile email claims";
             }
             config.post_logout_redirect_uri = $"{protocol}{this.Request.Host.ToUriComponent()}/";
             config.post_login_route = "/home";
