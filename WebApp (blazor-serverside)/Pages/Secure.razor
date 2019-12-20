@@ -1,5 +1,6 @@
 ﻿@page "/secure"
 @attribute [Authorize]
+@inject OpenIdConnectOptions oidcOptions
 @inject AuthenticationStateProvider AuthenticationStateProvider
 @inject IHttpContextAccessor ContextAccessor
 @inject IConfiguration Configuration
@@ -11,7 +12,6 @@ Secure:
 
 <p>
     <a href="/">home</a><br />
-    <a href="@OidcConfigurationUrl">oidc-configuration</a>
 </p>
 
 <AuthorizeView Roles="admin">
@@ -42,19 +42,22 @@ Secure:
         <li>
             ====================== CLAIMS =============================================
         </li>
-        @foreach (var claim in ContextAccessor.HttpContext.User.Claims)
+        @foreach (var claim in ContextAccessor.HttpContext.User.Claims.OrderBy(c => c.Type))
         {
             <li>
                 @claim.Type : @claim.Value
             </li>
         }
+
     </ul>
+
+    <button class="btn btn-secondary" @onclick="@(() => UpdateTokenClaims(true))">Refresh</button><br /><br />
 </AuthorizeView>
 
 <button @onclick="@Log">Write user info to console</button>
 
 @code {
-    public string OidcConfigurationUrl => Configuration["Oidc:Authority"] + "/.well-known/openid-configuration";
+    public JObject WellKnown { get; set; }
 
     private async Task Log()
     {
@@ -70,5 +73,58 @@ Secure:
         {
             Console.WriteLine("user is NOT authenticated.");
         }
+    }
+
+    private async Task<IIdentity> UpdateTokenClaims(bool force = false)
+    {
+        // always refresh the token, needs refresh token to be present in identity claims
+        // or let a timer doe this constantly? https://github.com/aspnet/AspNetCore/issues/16241
+        var identity = (ClaimsIdentity)this.ContextAccessor.HttpContext.User.Identity;
+        var now = DateTimeOffset.UtcNow.ToUnixTimeSeconds();
+        var exp = long.Parse(identity.GetClaimValue(ClaimType.AccessTokenExpires));
+        Console.WriteLine($"++++++ TOKEN now: {now}, exp: {exp} ++++++++");
+
+        if (now >= exp || force)
+        {
+            Console.WriteLine("++++++ TOKEN expired ++++++++");
+            // tokens expired https://identitymodel.readthedocs.io/en/latest/client/token.html#requesting-a-token-using-the-refresh-token-grant-type
+            var response = await new HttpClient().RequestRefreshTokenAsync(new RefreshTokenRequest
+            {
+                Address = (await this.GetWellKnownAsync().ConfigureAwait(false)).SelectToken("token_endpoint").Value<string>(),
+                ClientId = this.oidcOptions.ClientId,
+                ClientSecret = this.oidcOptions.ClientSecret,
+                RefreshToken = identity.GetClaimValue(ClaimType.RefreshToken)
+            });
+
+            if (!response.IsError)
+            {
+                Console.WriteLine($"++++++ TOKEN refreshed {response.AccessToken} ++++++++");
+                identity.SetIdentityClaims(response.AccessToken, response.RefreshToken);
+            }
+        }
+        else
+        {
+            Console.WriteLine($"++++++ TOKEN expires at {exp} in {TimeSpan.FromSeconds(exp - now).Minutes} minutes ++++++++");
+        }
+
+        return identity;
+    }
+
+    private async Task<JObject> GetWellKnownAsync()
+    {
+        if (this.WellKnown == null)
+        {
+            var client = new HttpClient();
+            client.BaseAddress = new Uri(this.oidcOptions.Authority + "/");
+            client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+
+            var response = await client.GetAsync(".well-known/openid-configuration").ConfigureAwait(false);
+            if (response.IsSuccessStatusCode)
+            {
+                var wellknownString = await response.Content.ReadAsStringAsync().ConfigureAwait(false);
+                this.WellKnown = JObject.Parse(wellknownString);
+            }
+        }
+        return this.WellKnown;
     }
 }

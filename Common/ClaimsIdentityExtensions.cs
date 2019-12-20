@@ -87,47 +87,47 @@
             return source;
         }
 
-        ///// <summary>
-        ///// Adds or updates a identity claim
-        ///// </summary>
-        ///// <returns></returns>
-        //public static ClaimsIdentity SetClaimValue(this ClaimsIdentity source, string type, long value)
-        //{
-        //    if (source == null || string.IsNullOrEmpty(type))
-        //    {
-        //        return source;
-        //    }
+        /// <summary>
+        /// Adds or updates a identity claim
+        /// </summary>
+        /// <returns></returns>
+        public static ClaimsIdentity AddOrUpdateClaim(this ClaimsIdentity source, string type, long value)
+        {
+            if (source == null || string.IsNullOrEmpty(type))
+            {
+                return source;
+            }
 
-        //    var claim = source.FindFirst(type);
-        //    if (claim != null)
-        //    {
-        //        source.RemoveClaim(claim);
-        //    }
+            var claim = source.FindFirst(type);
+            if (claim != null)
+            {
+                source.RemoveClaim(claim);
+            }
 
-        //    source.AddClaim(new Claim(type, value.ToString()));
-        //    return source;
-        //}
+            source.AddClaim(new Claim(type, value.ToString()));
+            return source;
+        }
 
-        ///// <summary>
-        ///// Adds or updates a identity claim
-        ///// </summary>
-        ///// <returns></returns>
-        //public static ClaimsIdentity AddOrUpdateClaim(this ClaimsIdentity source, string type, long? value)
-        //{
-        //    if (source == null || string.IsNullOrEmpty(type))
-        //    {
-        //        return source;
-        //    }
+        /// <summary>
+        /// Adds or updates a identity claim
+        /// </summary>
+        /// <returns></returns>
+        public static ClaimsIdentity AddOrUpdateClaim(this ClaimsIdentity source, string type, long? value)
+        {
+            if (source == null || string.IsNullOrEmpty(type))
+            {
+                return source;
+            }
 
-        //    var claim = source.FindFirst(type);
-        //    if (claim != null)
-        //    {
-        //        source.RemoveClaim(claim);
-        //    }
+            var claim = source.FindFirst(type);
+            if (claim != null)
+            {
+                source.RemoveClaim(claim);
+            }
 
-        //    source.AddClaim(new Claim(type, value?.ToString()));
-        //    return source;
-        //}
+            source.AddClaim(new Claim(type, value?.ToString()));
+            return source;
+        }
 
         public static ClaimsIdentity SetIdentityClaims(this ClaimsIdentity source, string accessToken, string refreshToken)
         {
