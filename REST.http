@@ -1,14 +1,13 @@
 @baseUrl = https://global-keycloak.azurewebsites.net/auth/realms/master/protocol/openid-connect
-@access_token = eyJhbGciOiJSUzI1NiIsInR5cCIgOiAiSldUIiwia2lkIiA6ICJnUG9xMXF3OFRVRF8xWmxiUzB2eW5kOWZzUm1IU3ZVaWtSQ0RfVElYYTBnIn0.eyJqdGkiOiJhNjAwZjc5Yy0yZDEzLTRlMDAtOTk0Yy04YTYyZDZhOWQ3MmUiLCJleHAiOjE1NzY3NjE0MTUsIm5iZiI6MCwiaWF0IjoxNTc2NzYxMTE1LCJpc3MiOiJodHRwczovL2dsb2JhbC1rZXljbG9hay5henVyZXdlYnNpdGVzLm5ldC9hdXRoL3JlYWxtcy9tYXN0ZXIiLCJhdWQiOiJhY2NvdW50Iiwic3ViIjoiNjIyMWY0ODMtZWNlMC00YmVlLTljYjQtMzYwZjIzNTEwNDMxIiwidHlwIjoiQmVhcmVyIiwiYXpwIjoiYXNwbmV0Y29yZS1rZXljbG9hayIsImF1dGhfdGltZSI6MCwic2Vzc2lvbl9zdGF0ZSI6ImE5MzFjOTQxLWNhMWItNGVjNy05Y2IwLTI3ZGFjYjYxNTQ1NiIsImFjciI6IjEiLCJhbGxvd2VkLW9yaWdpbnMiOlsiKiJdLCJyZWFsbV9hY2Nlc3MiOnsicm9sZXMiOlsicm9sZTEiLCJyb2xlMiIsIm9mZmxpbmVfYWNjZXNzIiwidW1hX2F1dGhvcml6YXRpb24iXX0sInJlc291cmNlX2FjY2VzcyI6eyJhY2NvdW50Ijp7InJvbGVzIjpbIm1hbmFnZS1hY2NvdW50IiwibWFuYWdlLWFjY291bnQtbGlua3MiLCJ2aWV3LXByb2ZpbGUiXX19LCJzY29wZSI6InByb2ZpbGUgYWN0aXZhdGVkIGVtYWlsIiwidXBuIjoiZ3Vlc3QiLCJlbWFpbF92ZXJpZmllZCI6dHJ1ZSwiYWRkcmVzcyI6e30sIm5hbWUiOiJKb2huIERvZSIsImdyb3VwcyI6WyJyb2xlMSIsInJvbGUyIiwib2ZmbGluZV9hY2Nlc3MiLCJ1bWFfYXV0aG9yaXphdGlvbiJdLCJwcmVmZXJyZWRfdXNlcm5hbWUiOiJndWVzdCIsImdpdmVuX25hbWUiOiJKb2huIiwiZmFtaWx5X25hbWUiOiJEb2UiLCJlbWFpbCI6Imd1ZXN0QGtleWNsb2FrLmNvbSJ9.L-3LzkQVPMDOr1xpeONE2PX8xZ15cFXJHM3ePJq4AbqAZIXmzeG4fb2ICq3PhbUSwBSCSyP0cmjz2yTgh3j3qS-SmAbpz5SVWP-EmRE1lI3RQfA_QCfT77jXg3MJjuPaC5SVIgHKpk-RscTfGK9Tkos3Du1ytCEGmCpFPVA6RYsbF0goGbKA218iboSBvrEEAPgLi0km2EbUrFosiuUuPFfgGhm-qS5US66GcP7miNOhu_sRNKOBFKXRyjV5WRRNkh5lp76zBH9S4VB49fgGaL36Fpwj56zW-QlU8-bUJEUmTbOSS7-i6kAmhZvFWy9yboNzph8kzWI-vAe0_782DQ
-@refresh_token = eyJhbGciOiJIUzI1NiIsInR5cCIgOiAiSldUIiwia2lkIiA6ICJmYWYxZTVkYy0yYmY4LTRjY2EtODg2MS0yZGY0NjE5NGUyMGQifQ.eyJqdGkiOiI1ZWU5MGYwNC00Yzc4LTQ1OTEtYjVhNS0xNGY4MTc3ODA4MmYiLCJleHAiOjE1NzY3NjIzNTAsIm5iZiI6MCwiaWF0IjoxNTc2NzYxMTUwLCJpc3MiOiJodHRwczovL2dsb2JhbC1rZXljbG9hay5henVyZXdlYnNpdGVzLm5ldC9hdXRoL3JlYWxtcy9tYXN0ZXIiLCJhdWQiOiJodHRwczovL2dsb2JhbC1rZXljbG9hay5henVyZXdlYnNpdGVzLm5ldC9hdXRoL3JlYWxtcy9tYXN0ZXIiLCJzdWIiOiI2MjIxZjQ4My1lY2UwLTRiZWUtOWNiNC0zNjBmMjM1MTA0MzEiLCJ0eXAiOiJSZWZyZXNoIiwiYXpwIjoiYXNwbmV0Y29yZS1rZXljbG9hayIsImF1dGhfdGltZSI6MCwic2Vzc2lvbl9zdGF0ZSI6IjNkOWViOTFkLTM3MmItNDU1OC1iYWQyLWExMTBhM2YyMDUwNiIsInJlYWxtX2FjY2VzcyI6eyJyb2xlcyI6WyJyb2xlMSIsInJvbGUyIiwib2ZmbGluZV9hY2Nlc3MiLCJ1bWFfYXV0aG9yaXphdGlvbiJdfSwicmVzb3VyY2VfYWNjZXNzIjp7ImFjY291bnQiOnsicm9sZXMiOlsibWFuYWdlLWFjY291bnQiLCJtYW5hZ2UtYWNjb3VudC1saW5rcyIsInZpZXctcHJvZmlsZSJdfX0sInNjb3BlIjoib3BlbmlkIHByb2ZpbGUgYWN0aXZhdGVkIGVtYWlsIn0.Q0vutoLnkYcFURcnhxN0I2IM7QRnpemcQpeON4Y_j_0
 
-
+###################################################################################
 #### openid configuration
 GET https://global-keycloak.azurewebsites.net/auth/realms/master/.well-known/openid-configuration HTTP/1.1
 Content-Type: application/json
 
-
+###################################################################################
 ### sign in
+# @name sign_in
 POST {{baseUrl}}/token HTTP/1.1
 Content-Type: application/x-www-form-urlencoded
 
@@ -20,13 +19,16 @@ grant_type=password
 &password=guest
 &scope=openid
 
+@access_token = {{sign_in.response.body.$.access_token}}
+@refresh_token = {{sign_in.response.body.$.refresh_token}}
 
-### user info
+###################################################################################
+### get user info
 GET {{baseUrl}}/userinfo HTTP/1.1
 Authorization: Bearer {{access_token}}
 Content-Type: application/json
 
-
+###################################################################################
 ### refresh token https://identitymodel.readthedocs.io/en/latest/client/token.html#requesting-a-token-using-the-refresh-token-grant-type
 POST {{baseUrl}}/token HTTP/1.1
 Content-Type: application/x-www-form-urlencoded
