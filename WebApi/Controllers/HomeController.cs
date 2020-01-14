@@ -30,16 +30,16 @@ namespace KeyCloak.Controllers
                 $"{HttpContext.Request.Scheme}://{HttpContext.Request.Host}/signout-oidc",
                 "==== IDENTITY ===============",
                 HttpContext.User?.Identity?.Name,
-                "==== CLAIMS ===============",
-                HttpContext.User?.Claims?.Select(h => $"CLAIM {h.Type}: {h.Value}").Aggregate((i, j) => i + " | " + j),
+                //"==== CLAIMS ===============",
+                HttpContext.User?.Claims?.Any() == true ? HttpContext.User?.Claims?.Select(h => $"CLAIM {h.Type}: {h.Value}").Aggregate((i, j) => i + " | " + j) : null,
                 "==== TOKENS ===============",
                 HttpContext.User?.Identity?.IsAuthenticated == true ? "access_token: " + await this.HttpContext.GetTokenAsync("access_token") : null, // https://www.jerriepelser.com/blog/accessing-tokens-aspnet-core-2/
                 HttpContext.User?.Identity?.IsAuthenticated == true ? "id_token: " + await this.HttpContext.GetTokenAsync("id_token") : null,
                 HttpContext.User?.Identity?.IsAuthenticated == true ? "refresh_token: " + await this.HttpContext.GetTokenAsync("refresh_token") : null,
                 "==== HEADERS ===============",
                 HttpContext.Request.Headers.Select(h => $"HEADER {h.Key}: {h.Value}").Aggregate((i, j) => i + " | " + j)
-            //HttpContext.Items["username"] as string
-        };
+                //HttpContext.Items["username"] as string
+            };
         }
 
         [Route("signin-oidc")]
