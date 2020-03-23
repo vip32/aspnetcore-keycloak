@@ -40,7 +40,13 @@ grant_type=refresh_token
 &refresh_token={{refresh_token}}
 
 ###################################################################################
-### API get value (BEARER)
-GET https://localhost:5002/api/values HTTP/1.1
+### API get values (BEARER)
+GET https://localhost:5001/api/values HTTP/1.1
+Authorization: Bearer {{access_token}}
+Content-Type: application/json
+
+###################################################################################
+### API get root (BEARER)
+GET https://localhost:5001 HTTP/1.1
 Authorization: Bearer {{access_token}}
 Content-Type: application/json
