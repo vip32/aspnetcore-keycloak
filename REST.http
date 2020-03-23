@@ -6,7 +6,7 @@ GET https://global-keycloak.azurewebsites.net/auth/realms/master/.well-known/ope
 Content-Type: application/json
 
 ###################################################################################
-### sign in
+### AUTH sign in
 # @name sign_in
 POST {{baseUrl}}/token HTTP/1.1
 Content-Type: application/x-www-form-urlencoded
@@ -23,13 +23,13 @@ grant_type=password
 @refresh_token = {{sign_in.response.body.$.refresh_token}}
 
 ###################################################################################
-### get user info
+### AUTH get user info
 GET {{baseUrl}}/userinfo HTTP/1.1
 Authorization: Bearer {{access_token}}
 Content-Type: application/json
 
 ###################################################################################
-### refresh token https://identitymodel.readthedocs.io/en/latest/client/token.html#requesting-a-token-using-the-refresh-token-grant-type
+### AUTH refresh token https://identitymodel.readthedocs.io/en/latest/client/token.html#requesting-a-token-using-the-refresh-token-grant-type
 POST {{baseUrl}}/token HTTP/1.1
 Content-Type: application/x-www-form-urlencoded
 
@@ -38,3 +38,9 @@ grant_type=refresh_token
 &client_secret=1beb5df9-01dd-46c3-84a8-b65eca50ad57
 &resource=aspnetcore-keycloak
 &refresh_token={{refresh_token}}
+
+###################################################################################
+### API get value (BEARER)
+GET https://localhost:5002/api/values HTTP/1.1
+Authorization: Bearer {{access_token}}
+Content-Type: application/json
